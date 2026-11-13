@@ -1,0 +1,172 @@
+export type Locale = "en" | "ar";
+export type JobMode = "world" | "overlay" | "interface" | "scene";
+
+export interface JobDefinition {
+  id: string;
+  mode: JobMode;
+  playable: boolean;
+  pay: number;
+  emoji: string;
+  title: Record<Locale, string>;
+  location: Record<Locale, string>;
+  description: Record<Locale, string>;
+}
+
+export const JOBS = [
+  {
+    id: "needle",
+    mode: "overlay",
+    playable: true,
+    pay: 4,
+    emoji: "🪡",
+    title: { en: "Needle Threading Associate", ar: "أخصائي تلضيم إبر" },
+    location: { en: "Thread & Co. Garments", ar: "مصنع خيط وشركاه" },
+    description: {
+      en: "Put thread through tiny holes. That's the entire job description.",
+      ar: "تدخل الخيط في عين الإبرة. أيوه، ده وصف الوظيفة كله.",
+    },
+  },
+  {
+    id: "paperweight",
+    mode: "world",
+    playable: false,
+    pay: 3,
+    emoji: "📄",
+    title: { en: "Paper Stabilization Officer", ar: "موظف تثبيت أوراق" },
+    location: { en: "Municipal Filing Office", ar: "مكتب حفظ الأوراق" },
+    description: {
+      en: "Sit on important paperwork. Stand up only if absolutely necessary.",
+      ar: "تقعد على الورق المهم عشان ما يطيرش. القيام للضرورة القصوى.",
+    },
+  },
+  {
+    id: "chickens",
+    mode: "world",
+    playable: false,
+    pay: 5,
+    emoji: "🐔",
+    title: { en: "Chicken Reconciliation Officer", ar: "مسؤول لم شمل الفراخ" },
+    location: { en: "Sunny Side Farm", ar: "مزرعة الجانب المشمس" },
+    description: {
+      en: "Convince free-spirited chickens that the coop is a lovely place.",
+      ar: "اقنع الفراخ المستقلة بذاتها إن العشة مكان لطيف جدًا.",
+    },
+  },
+] as const satisfies readonly JobDefinition[];
+
+export type JobId = (typeof JOBS)[number]["id"];
+
+export function getJob(id: JobId | null) {
+  return JOBS.find((job) => job.id === id);
+}
+
+export const copy = {
+  en: {
+    fictional: "FICTIONAL GAME · NO REAL JOBS",
+    navJobs: "Job board",
+    navVillage: "Village",
+    inbox: "Inbox",
+    coins: "coins",
+    greeting: "Welcome to Maalesh.",
+    introTitle: "Unfortunately, you're qualified.",
+    introBody: "We don't usually take people into account. But you seem nice, so we'll make an exception.",
+    introButton: "Fine. Make me an account.",
+    introFoot: "No CV, password, or actual employment involved. It's a video game.",
+    heroEyebrow: "MAALESH HUMAN PLACEMENT SERVICES",
+    boardTitle: "Your next questionable career starts here.",
+    boardBody: "Everyone gets considered. Almost everyone gets hired. Results may be hilarious.",
+    available: "Now hiring",
+    comingSoon: "Soon-ish",
+    apply: "Apply instantly",
+    myJob: "You're hired!",
+    reserved: "Coming in an update",
+    goVillage: "Go to the village",
+    jobPanelTitle: "Your very real pretend job",
+    startShift: "Start a shift",
+    quit: "I quit!",
+    quitHint: "Quit anytime. No fine print, no penalties.",
+    noJob: "Currently enjoying unemployment",
+    noJobBody: "Take a walk, or browse something mildly employable.",
+    browse: "Browse jobs",
+    villageTitle: "A tiny place to call your own",
+    villageBody: "Walk around while we build the rest of the village. The needle job already works!",
+    villageHelp: "Move with WASD / arrows, or tap somewhere to walk.",
+    shiftCount: "Shifts completed",
+    inboxTitle: "DefinitelyMail",
+    from: "From: Maalesh HR",
+    noLetters: "The inbox is suspiciously quiet.",
+    close: "Close",
+    needleTitle: "Needle Threading Associate",
+    needleDescription: "Drag the blue thread tip into the eye of the needle. Release to thread it. Three needles make a shift.",
+    threaded: "Needles threaded",
+    needleTryAgain: "Close! Aim for the little oval.",
+    needleSuccess: "Nice threading! On to the next one.",
+    needleFinished: "Shift complete! Finance is delighted.",
+    claim: "Collect your paycheck",
+    prototype: "Early playable prototype",
+    back: "Back to job board",
+    legal: "Maalesh is a fictional employment agency in a comedy game. None of these jobs exist.",
+    letterWelcomeTitle: "Your account has been tolerated",
+    letterWelcomeBody: "We don't usually take people into account. But your pretend profile has been accepted. Welcome aboard!",
+    letterHiredTitle: "Unfortunately, you've been hired",
+    letterHiredBody: "After careful consideration, we regret to inform you that your application has been successful. You may report for duty whenever you feel like it. Sorry about that.",
+    letterQuitTitle: "Congratulations on quitting!",
+    letterQuitBody: "You did the right thing. 96.65% of our clients quit within their first week. The rest may still be on their lunch break. We've got other opportunities whenever you're ready.",
+    letterPaidTitle: "Your hard-earned paycheck",
+    letterPaidBody: "You did it! Three needles have officially been threaded. Your pay has been deposited into your extremely imaginary wallet.",
+  },
+  ar: {
+    fictional: "لعبة خيالية · مفيش وظائف حقيقية",
+    navJobs: "الوظائف",
+    navVillage: "القرية",
+    inbox: "البريد",
+    coins: "عملة",
+    greeting: "أهلًا بيك في معلش.",
+    introTitle: "للأسف، مؤهلاتك مناسبة.",
+    introBody: "إحنا أصلًا ما بنعملش حساب لحد. بس معلش، هنعملك حساب.",
+    introButton: "ماشي، اعملي حساب.",
+    introFoot: "لا سيرة ذاتية ولا كلمة سر ولا شغل حقيقي. دي لعبة يا جماعة.",
+    heroEyebrow: "معلش لخدمات توظيف البشر",
+    boardTitle: "مستقبلك الوظيفي الغريب يبدأ من هنا.",
+    boardBody: "بنبص على كل الطلبات. وغالبًا بنقبلها كلها. وربنا يستر.",
+    available: "مطلوب فورًا",
+    comingSoon: "قريبًا يعني",
+    apply: "قدّم واتقبل",
+    myJob: "مبروك، اتقبلت!",
+    reserved: "في تحديث جاي",
+    goVillage: "روح القرية",
+    jobPanelTitle: "شغلك الوهمي المحترم",
+    startShift: "ابدأ الوردية",
+    quit: "أنا مستقيل!",
+    quitHint: "استقيل في أي لحظة. بلا غرامات ولا وجع دماغ.",
+    noJob: "حاليًا متفرغ للحياة",
+    noJobBody: "اتمشى شوية، أو دور على شغل يخليك تندم.",
+    browse: "دور على شغل",
+    villageTitle: "قرية صغيرة على قدّنا",
+    villageBody: "اتمشى براحتك لحد ما نعمر باقي القرية. شغل تلضيم الإبر شغال!",
+    villageHelp: "اتحرك بـ WASD أو الأسهم، أو المس المكان اللي عايز تروحه.",
+    shiftCount: "ورديات خلصتها",
+    inboxTitle: "بريد أكيد جدًا",
+    from: "من: موارد بشرية معلش",
+    noLetters: "البريد هادي بشكل مريب.",
+    close: "اقفل",
+    needleTitle: "أخصائي تلضيم إبر",
+    needleDescription: "اسحب طرف الخيط الأزرق لعين الإبرة وسيبه جواها. تلات إبر وخلصت الوردية.",
+    threaded: "إبر اتلضمت",
+    needleTryAgain: "قربت! حاول تصيب الفتحة الصغيرة.",
+    needleSuccess: "عاش! هات الإبرة اللي بعدها.",
+    needleFinished: "خلصت الوردية! الحسابات مبسوطة.",
+    claim: "اقبض مرتبك",
+    prototype: "نسخة تجريبية قابلة للعب",
+    back: "ارجع للوظائف",
+    legal: "معلش شركة توظيف خيالية جوه لعبة كوميدية. مفيش أي وظائف حقيقية هنا.",
+    letterWelcomeTitle: "اتقبل عمل حسابك، معلش",
+    letterWelcomeBody: "إحنا ما بنعملش حساب لحد، بس عشان خاطرك عملنالك حساب وهمي. نورت معلش!",
+    letterHiredTitle: "معلش، للأسف اتقبلت",
+    letterHiredBody: "بعد دراسة متأنية لطلبك، نأسف لإبلاغك إنه اتقبل. استلم الشغل وقت ما تحب. بنعتذر عن أي إزعاج.",
+    letterQuitTitle: "مبروك الاستقالة!",
+    letterQuitBody: "أنت عملت الصح. 96.65% من عملائنا استقالوا في أول أسبوع. الباقي غالبًا لسه في البريك. عندنا فرص تانية أحسن لما تحب.",
+    letterPaidTitle: "مرتبك اللي تعبت فيه",
+    letterPaidBody: "عاش! تلضمت تلات إبر بنجاح. الحسابات حولت مرتبك لمحفظتك الوهمية جدًا.",
+  },
+} satisfies Record<Locale, Record<string, string>>;
