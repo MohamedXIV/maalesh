@@ -13,7 +13,7 @@ export function ApartmentCanvas({
 }) {
   const host = useRef<HTMLDivElement>(null);
   const onInteractRef = useRef(onInteract);
-  onInteractRef.current = onInteract;
+  useEffect(() => { onInteractRef.current = onInteract; }, [onInteract]);
   useEffect(() => {
     let cancelled = false;
     let dispose: (() => void) | undefined;

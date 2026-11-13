@@ -12,7 +12,7 @@ interface PaperOfficeCanvasProps {
 export function PaperOfficeCanvas({ locale, onComplete }: PaperOfficeCanvasProps) {
   const host = useRef<HTMLDivElement>(null);
   const completeRef = useRef(onComplete);
-  completeRef.current = onComplete;
+  useEffect(() => { completeRef.current = onComplete; }, [onComplete]);
 
   useEffect(() => {
     let cancelled = false;

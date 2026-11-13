@@ -12,7 +12,7 @@ interface VillageCanvasProps extends VillageCallbacks {
 export function VillageCanvas({ locale, startPosition, onVisit, onPosition }: VillageCanvasProps) {
   const hostRef = useRef<HTMLDivElement>(null);
   const callbacksRef = useRef({ onVisit, onPosition });
-  callbacksRef.current = { onVisit, onPosition };
+  useEffect(() => { callbacksRef.current = { onVisit, onPosition }; }, [onVisit, onPosition]);
   const positionRef = useRef(startPosition);
 
   useEffect(() => {
