@@ -13,10 +13,11 @@ import { VillageCanvas } from "./village-canvas";
 import { ApartmentCanvas } from "./apartment-canvas";
 import { PaperOfficeCanvas } from "./paper-office-canvas";
 import { NeedleGame } from "./needle-game";
+import { InkHrDialog } from "./ink-hr-dialog";
 import type { VillageDestination } from "@/game/village";
 
 type Screen = "jobs" | "village" | "home" | "office";
-type Dialog = "inbox" | "needle" | "computer" | null;
+type Dialog = "inbox" | "needle" | "computer" | "hr" | null;
 
 export function MaaleshApp() {
   const [save, setSave] = useState<SaveData>(freshSave);
@@ -79,12 +80,12 @@ export function MaaleshApp() {
     setSave(previous => finishPaidShift(previous, shiftId));
     setDialog(null);
     setScreen("village");
-    setNotice(t.paperDone);
+    setNotice(save.activeJob === "paperweight" ? t.paperDone : t.needleFinished);
   }
   function visit(place: VillageDestination) {
     switch (place) {
       case "agency":
-        setScreen("jobs");
+        setDialog("hr");
         return;
       case "home":
         setScreen("home");
@@ -306,13 +307,19 @@ export function MaaleshApp() {
           <div
             className={dialog === "needle" ? "modal-window wide" : "modal-window"}
             role="dialog" aria-modal="true"
-            aria-label={dialog === "inbox" ? t.inboxTitle : dialog === "needle" ? t.needleTitle : t.computer}
+            aria-label={dialog === "inbox" ? t.inboxTitle : dialog === "needle" ? t.needleTitle : dialog === "hr" ? "Maalesh HR" : t.computer}
           >
             {dialog === "needle" ? (
               <NeedleGame locale={locale} onClose={leaveShift} onQuit={quit} onComplete={completeShift} />
             ) : dialog === "inbox" ? (
               <Inbox locale={locale} mails={save.mails} onClose={() => setDialog(null)}
                 onVillage={() => { setDialog(null); setScreen("village"); }} />
+            ) : dialog === "hr" ? (
+              <InkHrDialog
+                locale={locale}
+                onClose={() => setDialog(null)}
+                onIntent={intent => { setDialog(null); setScreen(intent === "jobs" ? "jobs" : "village"); }}
+              />
             ) : (
               <>
                 <div className="modal-top">

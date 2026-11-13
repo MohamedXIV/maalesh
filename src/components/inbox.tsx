@@ -34,7 +34,9 @@ export function Inbox({
             {letter.jobId && (
               <p className="mail-job">↳ {getJob(letter.jobId)?.title[locale]}</p>
             )}
-            <p>{bodies[letter.kind]}</p>
+            <p>{letter.kind === "paid" && letter.jobId === "paperweight"
+              ? (locale === "ar" ? "أنقذت الورق من الطيران ووصّلت 3 ورقات لزمايلك. الحسابات مبسوطة. اتفضل مرتبك الوهمي." : "Three sheets delivered. Several other sheets remained appropriately seated upon. Your imaginary wages have arrived.")
+              : bodies[letter.kind]}</p>
             <small>— Maalesh HR ❤️</small>
           </article>
         ))}
