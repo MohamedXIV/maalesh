@@ -7,13 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "predev": "node scripts/compile-ink.cjs",
+    "prebuild": "node scripts/compile-ink.cjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "next": "^16.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "phaser": "^4.2.1"
+    "phaser": "^4.2.1",
+    "inkjs": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",
@@ -21,6 +25,7 @@
     "@types/react-dom": "^19.2.0",
     "eslint": "^9.39.0",
     "eslint-config-next": "^16.0.0",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0"
   }
 }
