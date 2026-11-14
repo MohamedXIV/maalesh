@@ -1,33 +1,36 @@
-# Maalesh — living roadmap
+# Maalesh — living roadmap (implementation track)
 
-A direction, not a fixed release commitment. Keep every stage playable and adjust after testing fun.
+The **full Design Bible** is maintained in `docs/spec` on main. Keep the playable build aligned with approved decisions.
 
-## Milestone 0 — foundation (first PR)
-- Next.js / React / Phaser 4 integration with browser-only game loading
-- A cheerful fictional job board with local pretend profile and mock inbox
-- Small geometric village sandbox, proving Phaser scene lifecycle and movement
-- A playable needle-threading *overlay* job as a proof of two presentation styles
-- Language switch: English / Egyptian Arabic, including RTL support
-- Local persistence and a penalty-free quit flow
-- Document basic content conventions; no speculative plugin framework
+## Milestone 0 — foundational slice (draft PR #1)
+- Next.js / React / Phaser 4 bootstrap
+- Fictional recruitment portal, first fake mail, English/Arabic
+- Geometric village, needle threading overlay, local save
+- Penalty-free resignation
 
-## Milestone 1 — first complete day
-- Paperweight Operator as a meaningful in-world minigame
-- Refine start / work / payment / quit flow; clarify where shifts happen
-- First usable apartment, return home and meaningful purchases
-- Test the complete loop in both languages
+## Milestone 1 — first complete day (stacked work)
+- Real job transaction reducer with one-time payouts and v1->v2 save migration
+- Two *genuinely interactive* modes: needle threading overlay; paper stabilization in-world
+- Four-location walkable oblique-3/4 village with doors, movement and saved position
+- Cozy apartment with fake computer and first duck-lamp decoration
+- Short InkJS HR dialogue using authored/compiled Ink sources in both languages
+- Domain regression tests for pay/quit/reapply/migration
+- Mobile tapping and accessible exits
 
-## Milestone 2 — first village slice
-- Walkable village block with real workplaces, interactions and interiors
-- A few memorable NPCs with routines and contextual responses
-- A second contrasting job and a leisure activity
-- Controls for keyboard, touch, desktop and mobile browsers
+### Remaining before considering it validated
+- npm install, compile Ink, lint, typecheck, test, production build
+- Real browser walkthrough and mobile UX pass
+- Verify that Phaser canvases mount/unmount reliably and door interactions feel natural
+- Polish text tone, collision and gamepad/touch assistance if needed
+- Replace only the most noticeable placeholder visual issues
 
-## Beyond
-- Extend the village organically, add jobs of multiple formats, furniture,
-  fake websites and optional social systems.
-- Expand content through data + cohesive modules rather than hard-coded branches.
+## Next content milestones
+- More expressive Paperweight Operator variants (fans, characters asking for specific sheets)
+- NPC dialogue with persistent story memory and relationships
+- A few named villagers, simple routines, cozy leisure gameplay
+- Physical/interior workplace refinements
+- Functional decoration placement and housing upgrades
+- One chicken gathering job and another desk/overlay job
 
-## Not now
-Backend accounts, multiplayer, real job applications, giant content pipelines,
-heavy economy, complex job-plugin runtime, extensive town simulation.
+## Non-goals now
+Live Gemini API at runtime, large city, multiplayer, production authentication, real job services, punishments for unemployment, heavy economic grinding.

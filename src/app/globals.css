@@ -193,3 +193,31 @@ h3 { font-size: 20px; letter-spacing: -.4px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* First complete day: readable world notices, fake desktop and HR dialog. */
+.game-notice {
+  display: flex; justify-content: space-between; gap: 12px; align-items: center;
+  margin-bottom: 24px; border: 1px solid #ccdfce; border-radius: 15px;
+  padding: 11px 16px; color: #3b635b; background: #e7f2e6; font-size: 14px;
+}
+.game-notice button { border: 0; background: transparent; color: inherit; font-size: 24px; }
+.fake-desktop {
+  min-height: 220px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px; align-content: center; border: 5px solid #ded4bf; border-radius: 15px;
+  background: linear-gradient(145deg, #cce5d6, #e7f2e4);
+  padding: 20px;
+}
+.desktop-app {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 8px; background: #fffef9; border: 1px solid #d5ddcd; border-radius: 14px;
+  color: #385d55; font-weight: 750; min-height: 105px;
+}
+.desktop-app span { font-size: 30px; }
+.desktop-app:hover { background: #fdf0ce; }
+.ink-lines { background: #f2f5ec; padding: 19px; border-radius: 14px; margin-block: 12px; }
+.ink-lines p { margin-block: 8px; font-size: 16px; line-height: 1.75; }
+.ink-choices { display: grid; gap: 10px; margin-top: 15px; }
+@media (max-width: 670px) {
+  .fake-desktop { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px; }
+  .desktop-app { min-height: 90px; }
+}
