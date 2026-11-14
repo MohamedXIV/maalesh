@@ -81,10 +81,11 @@ class TownScene extends Phaser.Scene {
           { x: p.x, y: p.y + TILE_H / 2 }, { x: p.x - TILE_W / 2, y: p.y },
         ];
         const variation = (x * 37 + y * 11) % 11 === 0 && color === SURFACE_COLORS.grass;
+        const vertices = polygon.map(point => new Phaser.Math.Vector2(point.x, point.y));
         g.fillStyle(variation ? 0xaad09a : color, 1);
-        g.fillPoints(polygon, true);
+        g.fillPoints(vertices, true);
         g.lineStyle(1, color === SURFACE_COLORS.road ? 0x879099 : 0xffffff, 0.12);
-        g.strokePoints(polygon, true);
+        g.strokePoints(vertices, true);
         if (townSurface(x, y) === "road" && ((x === 26 && y % 4 === 0) || (y === 26 && x % 4 === 0))) {
           g.fillStyle(0xf4de92, 0.85);
           g.fillEllipse(p.x, p.y, 14, 3);
@@ -95,10 +96,11 @@ class TownScene extends Phaser.Scene {
 
   private polygon(points: { x: number; y: number }[], color: number, depth: number): void {
     const shape = this.add.graphics().setDepth(depth);
+    const vertices = points.map(point => new Phaser.Math.Vector2(point.x, point.y));
     shape.fillStyle(color, 1);
-    shape.fillPoints(points, true);
+    shape.fillPoints(vertices, true);
     shape.lineStyle(1.5, 0xffffff, 0.18);
-    shape.strokePoints(points, true);
+    shape.strokePoints(vertices, true);
   }
 
   private drawBuilding(place: TownLandmark): void {
