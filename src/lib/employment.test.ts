@@ -14,7 +14,7 @@ describe("Maalesh employment contract", () => {
   });
 
   it("supports applying for both currently playable job types", () => {
-    for (const id of ["needle", "paperweight"] as const) {
+    for (const id of ["needle", "paperweight", "shadow"] as const) {
       const hired = applyForJob(createProfile(freshSave()), id);
       expect(hired.activeJob).toBe(id);
       expect(hired.mails.at(-1)?.kind).toBe("hired");
@@ -75,7 +75,9 @@ describe("save migration and validation", () => {
       coins: 6, shifts: 2, mails: [{ id: 1, kind: "welcome", jobId: null }],
     });
     const next = parseSave(old);
-    expect(next.version).toBe(2);
+    expect(next.version).toBe(3)
+    expect(next.townPosition).toEqual({ x: 25, y: 24 });
+    expect(next.computer.completedGigs).toEqual([]);
     expect(next.hasProfile).toBe(true);
     expect(next.activeJob).toBe("needle");
     expect(next.coins).toBe(6);

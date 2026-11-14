@@ -1,5 +1,5 @@
-import { MaaleshApp } from "@/components/maalesh-app";
+import { TownExperience } from "@/components/town-experience";
 
 export default function Home() {
-  return <MaaleshApp />;
+  return <TownExperience />;
 }

@@ -1,36 +1,28 @@
-# Maalesh — living roadmap (implementation track)
+# Maalesh — current implementation roadmap
 
-The **full Design Bible** is maintained in `docs/spec` on main. Keep the playable build aligned with approved decisions.
+Read [Town Life Sim Pivot](TOWN_LIFE_SIM_PIVOT.md): this **supersedes** the old oblique/4-building village prototype assumption.
 
-## Milestone 0 — foundational slice (draft PR #1)
-- Next.js / React / Phaser 4 bootstrap
-- Fictional recruitment portal, first fake mail, English/Arabic
-- Geometric village, needle threading overlay, local save
-- Penalty-free resignation
+## Existing baseline (draft PRs #1 and #3)
+- Fake Maalesh job board, local save, bilingual copy, Ink HR
+- Needle threading overlay + Paper Stabilization Phaser worksite
+- Home and duck lamp, supportive resignation, 9 passing employment tests
 
-## Milestone 1 — first complete day (stacked work)
-- Real job transaction reducer with one-time payouts and v1->v2 save migration
-- Two *genuinely interactive* modes: needle threading overlay; paper stabilization in-world
-- Four-location walkable oblique-3/4 village with doors, movement and saved position
-- Cozy apartment with fake computer and first duck-lamp decoration
-- Short InkJS HR dialogue using authored/compiled Ink sources in both languages
-- Domain regression tests for pay/quit/reapply/migration
-- Mobile tapping and accessible exits
+## Current experiment — fullscreen isometric town (stacked branch)
+- 52x52 navigable logical map with roads/lane/park/rural edge; camera follow and tap navigation
+- World interaction from walkable town to agency/home/workplace, with 4 basic NPCs
+- Real-game HUD only; no always-on website/nav shell
+- Retro home computer with windows/taskbar, fake browser, mail, notes, files, RubberDuck.exe
+- Playable offline freelance invoice gig with one-time payout
+- Opt-in Gemini BYOK town bulletin with authored offline content available by default
+- Schema v3 migration, unit tests for geometry/computer/offline AI validity
 
-### Remaining before considering it validated
-- npm install, compile Ink, lint, typecheck, test, production build
-- Real browser walkthrough and mobile UX pass
-- Verify that Phaser canvases mount/unmount reliably and door interactions feel natural
-- Polish text tone, collision and gamepad/touch assistance if needed
-- Replace only the most noticeable placeholder visual issues
+## Required validation / next work
+1. Build/typecheck/lint/tests + browser/mobile smoke tests of new branch.
+2. Fix click navigation and building depth occlusion; better isometric art and true collision.
+3. More city simulation: NPC paths, day cycle, opportunities to meet people, shops and persistent interior doors.
+4. Refine computer processes/files/apps into independent simulation, not a skin.
+5. Polish concrete jobs (paper and needle), then build one original satisfying new job.
+6. Bring project docs and canonical PR chain together before any main merge.
 
-## Next content milestones
-- More expressive Paperweight Operator variants (fans, characters asking for specific sheets)
-- NPC dialogue with persistent story memory and relationships
-- A few named villagers, simple routines, cozy leisure gameplay
-- Physical/interior workplace refinements
-- Functional decoration placement and housing upgrades
-- One chicken gathering job and another desk/overlay job
-
-## Non-goals now
-Live Gemini API at runtime, large city, multiplayer, production authentication, real job services, punishments for unemployment, heavy economic grinding.
+## Keep postponed
+Huge city, game economy punishment, mandatory rent, live AI dependency, multiplayer, auth/payments or fake services sending real email.
