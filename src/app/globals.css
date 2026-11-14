@@ -472,3 +472,18 @@ h3 { font-size: 20px; letter-spacing: -.4px; }
   .retro-desktop-title { display: none; }
   .retro-tray { display: none; }
 }
+
+
+/* An original tactile job: adjust signpost shadows by moving a lamp. */
+.shadow-job h2 { margin-bottom: 9px; }
+.shadow-job > .muted { padding-inline-end: 24px; }
+.shadow-progress { display: block; font-size: 13px; color: #517264; margin-bottom: 12px; }
+.shadow-board {
+  width: 100%; height: clamp(220px, 32vw, 330px);
+  background: #c8dfb6; border: 3px solid #c7c2a5; border-radius: 15px;
+  touch-action: none; user-select: none; overflow: hidden; cursor: ew-resize;
+}
+.shadow-board svg { display: block; height: 100%; width: 100%; pointer-events: none; }
+.shadow-slider-label { display: grid; gap: 8px; margin-top: 14px; font-weight: 750; font-size: 13px; }
+.shadow-slider-label input { width: 100%; accent-color: #2b7c71; min-height: 35px; }
+.shadow-feedback { min-height: 24px; font-size: 13px; font-weight: 750; color: #4c7e71; margin-block: 8px; }

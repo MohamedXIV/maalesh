@@ -14,7 +14,7 @@ describe("Maalesh employment contract", () => {
   });
 
   it("supports applying for both currently playable job types", () => {
-    for (const id of ["needle", "paperweight"] as const) {
+    for (const id of ["needle", "paperweight", "shadow"] as const) {
       const hired = applyForJob(createProfile(freshSave()), id);
       expect(hired.activeJob).toBe(id);
       expect(hired.mails.at(-1)?.kind).toBe("hired");

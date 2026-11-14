@@ -7,7 +7,7 @@ export type GridPosition = { x: number; y: number };
 export type TownSurface = "road" | "lane" | "sidewalk" | "grass" | "rural" | "park";
 export type TownLandmarkId =
   | "agency" | "home" | "workshop" | "office" | "cafe"
-  | "market" | "farm" | "park" | "library";
+  | "market" | "farm" | "park" | "library" | "lampshop";
 
 export interface TownLandmark {
   id: TownLandmarkId;
@@ -28,6 +28,7 @@ export const LANDMARKS: readonly TownLandmark[] = [
   { id: "market", at: { x: 34, y: 28 }, door: { x: 31, y: 28 }, height: 108, color: 0xb9cda8, roof: 0x829476, label: { en: "CORNER SHOP", ar: "بقالة الناصية" } },
   { id: "farm", at: { x: 43, y: 42 }, door: { x: 40, y: 42 }, height: 74, color: 0xe8c4a4, roof: 0xb68c65, label: { en: "SUNNY FARM", ar: "المزرعة" } },
   { id: "park", at: { x: 36, y: 40 }, door: { x: 33, y: 40 }, height: 12, color: 0xbacaaa, roof: 0x7baf86, label: { en: "POCKET PARK", ar: "جنينة صغيرة" } },
+  { id: "lampshop", at: { x: 34, y: 14 }, door: { x: 31, y: 14 }, height: 110, color: 0xe9d6a0, roof: 0x8aa6b5, label: { en: "LIGHTING DEPOT", ar: "إدارة الإنارة" } },
   { id: "library", at: { x: 18, y: 40 }, door: { x: 21, y: 40 }, height: 110, color: 0xb5cdda, roof: 0x7292aa, label: { en: "TOWN LIBRARY", ar: "مكتبة البلد" } },
 ];
 

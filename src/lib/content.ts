@@ -27,6 +27,19 @@ export const JOBS = [
     },
   },
   {
+    id: "shadow",
+    mode: "overlay",
+    playable: true,
+    pay: 4,
+    emoji: "🌤️",
+    title: { en: "Official Shadow Repositioner", ar: "موظف تعديل الظلال" },
+    location: { en: "Municipal Lighting Department", ar: "إدارة إنارة البلد" },
+    description: {
+      en: "Move a lamp until the signpost shadow fits the town council's chalk outlines.",
+      ar: "حرّك المصباح لحد ما ظل اليافطة يطابق العلامة اللي رسمها المجلس المحلي.",
+    },
+  },
+  {
     id: "paperweight",
     mode: "world",
     playable: true,

@@ -15,11 +15,12 @@ import { ApartmentCanvas } from "./apartment-canvas";
 import { PaperOfficeCanvas } from "./paper-office-canvas";
 import { InkHrDialog } from "./ink-hr-dialog";
 import { NeedleGame } from "./needle-game";
+import { ShadowJob } from "./shadow-job";
 import { FakeJobPortal, type AiSession } from "./computer-apps";
 import { RetroComputer } from "./retro-computer";
 
 type Place = "town" | "home" | "office";
-type Overlay = "hr" | "jobs" | "needle" | "computer" | null;
+type Overlay = "hr" | "jobs" | "needle" | "shadow" | "computer" | null;
 const GAME_MINUTES_PER_TICK = 5;
 const REAL_TICK_MS = 10_000;
 
@@ -93,7 +94,7 @@ export function TownExperience() {
     }
     if (save.activeShiftId) return;
     setSave(previous => startShift(previous));
-    if (id === "needle") setOverlay("needle");
+    if (id === "needle" || id === "shadow") setOverlay(id);
     else if (id === "paperweight") setPlace("office");
   }
   function leaveWork() {
@@ -119,6 +120,8 @@ export function TownExperience() {
         return;
       case "workshop":
         startWork("needle"); return;
+      case "lampshop":
+        startWork("shadow"); return;
       case "office":
         startWork("paperweight"); return;
       case "cafe":
@@ -213,10 +216,10 @@ export function TownExperience() {
       onAi={update => setAi(previous => ({ ...previous, ...update }))}
     />}
 
-    {(overlay === "hr" || overlay === "jobs" || overlay === "needle") &&
+    {(overlay === "hr" || overlay === "jobs" || overlay === "needle" || overlay === "shadow") &&
       <div className="town-modal-backdrop" role="presentation">
         <section className="town-modal" role="dialog" aria-modal="true"
-          aria-label={overlay === "hr" ? "Maalesh HR" : overlay === "jobs" ? t.navJobs : t.needleTitle}>
+          aria-label={overlay === "hr" ? "Maalesh HR" : overlay === "jobs" ? t.navJobs : overlay === "shadow" ? "Shadow job" : t.needleTitle}>
           {overlay === "hr" && <InkHrDialog locale={locale} onClose={() => setOverlay(null)}
             onIntent={intent => setOverlay(intent === "jobs" ? "jobs" : null)} />}
           {overlay === "jobs" && <FakeJobPortal save={save} locale={locale} actions={{
@@ -232,7 +235,9 @@ export function TownExperience() {
           }} />}
           {overlay === "needle" && <NeedleGame locale={locale} onComplete={finishWork}
             onQuit={quit} onClose={leaveWork} />}
-          <button className="town-modal-close" onClick={overlay === "needle" ? leaveWork : () => setOverlay(null)}
+          {overlay === "shadow" && <ShadowJob locale={locale} onComplete={finishWork}
+            onQuit={quit} onClose={leaveWork} />}
+          <button className="town-modal-close" onClick={overlay === "needle" || overlay === "shadow" ? leaveWork : () => setOverlay(null)}
             aria-label={t.close}>×</button>
         </section>
       </div>}
