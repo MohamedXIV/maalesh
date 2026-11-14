@@ -30,7 +30,6 @@ export function MaaleshApp() {
     // Loaded only on the client to avoid a server/localStorage mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setSave(loadSave());
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHydrated(true);
   }, []);
   useEffect(() => {

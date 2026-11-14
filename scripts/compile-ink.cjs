@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- Node-only .cjs build tooling. */
 /* Compiles authored Ink once before Next dev/build.
  * Generated JSON in public/ink is checked into no source and served as assets.
  */
