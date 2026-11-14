@@ -66,7 +66,6 @@ export function TownExperience() {
   const clock = String(Math.floor(time / 60)).padStart(2,"0") + ":" +
     String(time % 60).padStart(2,"0");
 
-  function moveToTown() { setOverlay(null); setPlace("town"); }
   function apply(jobId: JobId) {
     if (save.activeJob) {
       setNotice(t.quitFirst);

@@ -223,7 +223,7 @@ export function BrowserApp({ save, locale, ai, actions }: {
       route === "freelance" ? <FreelancerApp save={save} locale={locale} actions={actions} /> :
       route === "bulletin" ? <TownBulletin save={save} locale={locale} ai={ai} actions={actions} /> :
       route === "help" ? <section className="pc-content"><h2>Help.pc</h2><p>The internet here is fictional and offline-first.</p><p>Visit oddjobs.gig for tasks or maalesh.jobs for local employment.</p></section> :
-      <section className="pc-content"><h2>404: That site doesn't exist in this town.</h2><p>No real external websites are opened by this fake browser.</p></section>}
+      <section className="pc-content"><h2>404: That site does not exist in this town.</h2><p>No real external websites are opened by this fake browser.</p></section>}
   </div>;
 }
 
