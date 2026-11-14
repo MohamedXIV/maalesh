@@ -1,71 +1,56 @@
 # maalesh. — معلش
 
-**Unfortunately, you're hired.** 😅
+**Unfortunately, you're hired.** 😂
 
-Maalesh is a cheerful cozy comedy life sim that begins as a completely fictional job placement website. Apply for absurd work, actually play the minigames, explore a small oblique-3/4 village, visit your cozy room, or resign at absolutely any time without penalties.
+**Maalesh is a cheerful, fullscreen town-life sim.** Walk through city blocks, asphalt roads, side streets and a rural edge; try strange jobs, resign any time, have a nice evening, or spend your salary on a duck lamp. The Maalesh agency is a fictional recruitment service connecting players with independently owned workplaces.
 
-> **This is a video game, not a job board.** No real applications, resumes, identity details or employment are involved.
+**This is a video game, not an actual employment service.** The jobs and websites are entirely fictional. No passwords or resumes required.
 
-## Technologies
+## Current prototype (experimental isometric branch)
 
-- **Next.js 16 / React 19 / TypeScript** for fictional websites, fake mail and UI.
-- **Phaser 4.2.1** for the village, apartment and in-world jobs.
-- **InkJS 2.4** for authored branching NPC/HR dialogue, compiled before dev/build.
-- **Local browser save** only; no backend, account registration, Gemini API or recurring costs.
-- **English** and **Egyptian Arabic** from the initial prototype.
+- Start as a character in a **fullscreen Phaser 4 isometric town**; move WASD/arrows, tap destinations and press E near places.
+- Distinct neighborhoods with asphalt, side streets and a rural/park edge; camera follows player.
+- Walk to Maalesh recruitment agency to open HR's InkJS dialogue and apply.
+- Try **Needle Threading** (overlay) or **Paper Stabilization** (workplace scene), quit freely without losing previous earnings.
+- Explore a home, buy a duck lamp, and use its **retro computer**.
+- On computer: real multitasking window shell, browser with fake local domains, mail, notepad, file explorer, RubberDuck.exe and **oddjobs.gig** freelance invoice-sorting contract.
+- Offline fictional content works without any real internet or AI key.
+- **Optional** Gemini content only if player opts in, adds their own key and explicitly requests a new small town bulletin. Key held in memory, not persisted. Provider calls pass through a bounded Next.js server route; quotas/charges depend on the player's own provider account.
+- English & Egyptian Arabic and versioned local saves.
 
-## Getting started
+The art, scale, NPC routines and computer OS depth are **early prototypes**, not the final town. The isometric perspective is an experiment; compare after hands-on playtesting.
 
-Requires Node.js 20.9+ and internet access for the first dependency installation.
+## Stack
 
-```bash
+Next.js 16, React 19, TypeScript, Phaser 4.2.1, InkJS, local save. No hosted database or actual account system.
+
+## Local development
+
+Requires Node.js 20.9+ and network for initial dependencies:
+
+~~~bash
 npm install
 npm run dev
-```
+~~~
 
-Open http://localhost:3000.
-
-The `predev` script compiles the authored English and Arabic Ink files into `public/ink`. `prebuild` performs the same action for production.
-
-```bash
-npm run typecheck
+Build and tests:
+~~~bash
 npm run lint
 npm test
+npm run typecheck
 npm run build
-```
+~~~
 
-## What is playable in the current prototype
+Ink source is compiled automatically before dev/build. Only one route, \`/\`, is needed: the town is the game.
 
-1. Create a **pretend account**, with no actual personal details.
-2. Apply for **Needle Threading Associate** (React precision overlay) or **Paper Stabilization Officer** (in-world Phaser job).
-3. Read absurdly apologetic acceptance and payment messages in fake mail.
-4. Explore the small **oblique-3/4 village** with arrows/WASD or touch. Walk near a building and press **E**, or tap it.
-5. Visit your cozy apartment, open a fake computer, rest, buy a **duck lamp** after earning 3 coins.
-6. At the agency, have a short InkJS-powered HR conversation.
-7. **Quit either job even mid-task**; no fine, blacklist, or loss of earned coins. Reapply whenever you like.
+## Source of truth
 
-The in-world paper job is intentionally simple: pick up paper at storage, carry it to the desk, sit on it, hand over three requested sheets, and collect a paycheck. The starter room and village use geometric placeholder artwork. The chicken job and richer NPC schedules are **not implemented** yet.
-
-**Prototype caveat:** this feature branch needs an npm install / typecheck / lint / browser smoke test in an environment with package registry access before merge. Repository file existence alone does not prove it builds or runs.
-
-## Design docs and agent guidance
-
-- [Design Bible](docs/spec/00-INDEX.md)
-- [Game vision](docs/spec/01-GAME-VISION.md)
-- [Jobs and minigames](docs/spec/03-JOBS-AND-MINIGAMES.md)
-- [Technical architecture](docs/spec/05-TECHNICAL-ARCHITECTURE.md)
-- [Milestone acceptance checks](docs/spec/08-MVP-ROADMAP.md)
+- [Town pivot and implementation boundaries](docs/TOWN_LIFE_SIM_PIVOT.md) — **most recent user-approved direction**
+- [Roadmap](docs/ROADMAP.md)
+- [Architecture](docs/ARCHITECTURE.md)
 - [Agent rules](AGENTS.md)
+- Design Bible and Gemini Web independent prototype documents are available separately under the documentation PR; some earlier perspective/size details are superseded by the Town Pivot.
 
-Some documents live on main while gameplay is built on a feature branch; merge and sync documentation before release.
+## Player freedom
 
-## Project constraints
-
-- Maalesh is a friendly independent employment **agency**, not the owner of all village businesses.
-- **No mandatory work or economic survival pressure.**
-- Playful situational writing, not a joke in every sentence.
-- Ink stories emit only whitelisted intents; TypeScript owns job state, pay and persistence.
-- Not every job uses character movement: overlays, UI puzzles and dedicated scenes are equally valid.
-- Content stays extensible through game data and cohesive modules. No giant speculative plugin framework.
-
-For the independent Gemini Web experiment, follow [the self-contained brief](docs/spec/09-GEMINI-BUILD-BRIEF.md) from main and **do not overwrite this implementation**.
+No penalties or shame for quitting or being unemployed. Every job can use the best-fitting format (world, focused overlay, UI/desk, dedicated scene). Add features gradually and make sure they're actually fun to play.
