@@ -12,14 +12,14 @@ function nextFrame(story: Story): Frame {
   const lines: string[] = [];
   let intent: Intent | null = null;
   while (story.canContinue) {
-    const text = story.Continue().trim();
+    const text = story.Continue()?.trim() ?? "";
     if (text) lines.push(text);
-    for (const tag of story.currentTags) {
+    for (const tag of story.currentTags ?? []) {
       if (tag === "intent:jobs") intent = "jobs";
       if (tag === "intent:village") intent = "village";
     }
   }
-  const choices = story.currentChoices.map((choice, index) => ({
+  const choices = (story.currentChoices ?? []).map((choice, index) => ({
     index, text: choice.text,
   }));
   return { lines, choices, intent };
