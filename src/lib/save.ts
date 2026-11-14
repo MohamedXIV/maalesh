@@ -1,6 +1,6 @@
 import { JOBS, type JobId, type Locale } from "./content";
 import { freshComputer, parseComputer, type ComputerSave } from "./computer";
-import { START_GRID, TOWN_GRID, type GridPosition } from "@/game/town/town-model";
+import { START_GRID, TOWN_GRID, type GridPosition } from "../game/town/town-model";
 
 export type MailKind = "welcome" | "hired" | "quit" | "paid";
 export interface MailItem { id: number; kind: MailKind; jobId: JobId | null; }
