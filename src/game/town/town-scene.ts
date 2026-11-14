@@ -46,6 +46,7 @@ class TownScene extends Phaser.Scene {
   private readonly start: GridPosition;
   private readonly callback: TownCallbacks;
   private readonly locale: Locale;
+  private readonly citizens: Citizen[] = CITIZENS.map(person => ({ ...person, daytime: { ...person.daytime }, evening: { ...person.evening } }));
   private playerGrid: GridPosition;
   private avatar?: Phaser.GameObjects.Container;
   private cursor?: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -93,7 +94,11 @@ class TownScene extends Phaser.Scene {
   }
 
   private polygon(points: { x: number; y: number }[], color: number, depth: number): void {
-    this.add.polygon(0, 0, points, color).setOrigin(0, 0).setDepth(depth);
+    const shape = this.add.graphics().setDepth(depth);
+    shape.fillStyle(color, 1);
+    shape.fillPoints(points, true);
+    shape.lineStyle(1.5, 0xffffff, 0.18);
+    shape.strokePoints(points, true);
   }
 
   private drawBuilding(place: TownLandmark): void {
@@ -158,15 +163,14 @@ class TownScene extends Phaser.Scene {
       this.add.circle(0, -32, 12, 0xf2c8a3),
       this.add.arc(0, -39, 12, 190, 350, false, 0x63544c),
     ]);
+    actor.add(this.add.text(0, 19, name, { fontSize: "11px", color: "#43564b", backgroundColor: "#fff9e7" }).setOrigin(.5));
     actor.setDepth(p.y + 4);
-    this.add.text(p.x, p.y + 20, name, { fontSize: "11px", color: "#43564b", backgroundColor: "#fff9e7" })
-      .setOrigin(.5).setDepth(p.y + 6);
     return actor;
   }
 
   private refreshCitizenSchedule(): void {
     const hour = (this.clock % 1440) / 60;
-    for (const citizen of CITIZENS) {
+    for (const citizen of this.citizens) {
       if (!citizen.avatar) continue;
       const next = hour < 18 && hour >= 7 ? citizen.daytime : citizen.evening;
       const target = this.screen(next);
@@ -185,7 +189,7 @@ class TownScene extends Phaser.Scene {
     this.drawGround();
     this.drawDecorations();
     for (const landmark of LANDMARKS) this.drawBuilding(landmark);
-    for (const npc of CITIZENS) npc.avatar = this.makeCitizen(npc.name[this.locale], npc.daytime, npc.outfit);
+    for (const npc of this.citizens) npc.avatar = this.makeCitizen(npc.name[this.locale], npc.daytime, npc.outfit);
 
     const spot = this.screen(this.playerGrid);
     this.avatar = this.makeCitizen("", this.playerGrid, 0x5f91ae);
@@ -254,7 +258,7 @@ class TownScene extends Phaser.Scene {
       this.callback.onVisit(candidate.id);
       return;
     }
-    for (const npc of CITIZENS) {
+    for (const npc of this.citizens) {
       const spot = npc.avatar;
       if (!spot || !this.avatar) continue;
       if (Phaser.Math.Distance.Between(spot.x, spot.y, this.avatar.x, this.avatar.y) < 90) {
